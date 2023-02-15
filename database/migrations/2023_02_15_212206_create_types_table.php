@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->id();
+
+            // Type
+            $table->string("code", 5)->unique();
+            $table->string("name", 20)->unique();
+            $table->boolean("digital");
+
             $table->timestamps();
         });
     }
