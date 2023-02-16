@@ -45,7 +45,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        return redirect()->route("home.product");
     }
 
     /**

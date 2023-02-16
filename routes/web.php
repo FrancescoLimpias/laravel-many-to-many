@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProductController::class, "indexByCategory"]);
+Route::get('/', [ProductController::class, "indexByCategory"])
+    ->name("home");
 
-Route::get('/products', [ProductController::class, "index"]);
+Route::get('/products', [ProductController::class, "index"])
+    ->name("home.product");
 
-Route::get('/products/create', [ProductController::class, "create"]);
+Route::get('/products/create', [ProductController::class, "create"])
+    ->name("home.create");
+
+Route::post('/products', [ProductController::class, "store"])
+    ->name("home.store");
