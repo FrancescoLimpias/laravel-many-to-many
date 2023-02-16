@@ -18,10 +18,10 @@ Route::get('/', [ProductController::class, "indexByCategory"])
     ->name("home");
 
 Route::get('/products', [ProductController::class, "index"])
-    ->name("home.product");
+    ->name("product.home");
 
 Route::get('/products/create', [ProductController::class, "create"])
-    ->name("home.create");
+    ->name("product.create");
 
 Route::post('/products', [ProductController::class, "store"])
-    ->name("home.store");
+    ->name("product.store");

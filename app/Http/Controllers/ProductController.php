@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -37,7 +38,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+
+        $categories = Category::all();
+        $types = Type::all();
+
+        return view('product.create', compact("categories", "types"));
     }
 
     /**
@@ -48,8 +53,33 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Validation
+        $data = $request -> validate([
+            'name' => 'required|string|max:20',
+            'description' => 'required|string|max:255',
+            'price' => 'required|integer',
+            'weight' => 'required|integer',
+            'typology_id' => 'required|integer',
+            'categories' => 'required|array'
+        ]);
+
+        // Creating code
+        $data['code'] = fake()->regexify('[A-Z0-9]{5}');
+
+        // Associating type
+        $product = Product::make($data);
+        $type = Type::find($data['type_id']);
+        $product->type()->associate($type);
+
+        // Saving product
+        $product->save();
+
+        // Associating categories
+        $categories = Category::find($data["categories"]);
+        $product->categories()->attach($categories);
         
-        return redirect()->route("home.product");
+        return redirect()->route("product.home");
     }
 
     /**
