@@ -60,9 +60,11 @@ class ProductController extends Controller
             'description' => 'required|string|max:255',
             'price' => 'required|integer',
             'weight' => 'required|integer',
-            'typology_id' => 'required|integer',
+            'type_id' => 'required|integer',
             'categories' => 'required|array'
         ]);
+
+        // $data = $request->all();
 
         // Creating code
         $data['code'] = fake()->regexify('[A-Z0-9]{5}');
