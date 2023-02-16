@@ -17,10 +17,11 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            "code" => fake()->regexify('[A-Z]{3}[0-4]{2}'),
-            "name" => fake()->word(),
+            "code" => fake()->unique()->regexify('[A-Z]{3}[0-4]{2}'),
+            "name" => fake()->unique()->word(),
             "description" => fake()->text(255),
             "price" => fake()->numberBetween(100, 1000),
+            "weight" => fake()->numberBetween(10, 500),
         ];
     }
 }
