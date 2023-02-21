@@ -6,6 +6,9 @@
     </h2>
 
     <ul>
+        <li>
+            @include('components.createProductButton')
+        </li>
         @foreach ($categories as $category)
             <li class="category-{{ $category['code'] }}">
                 <p>

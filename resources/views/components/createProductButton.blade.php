@@ -1,0 +1,1 @@
+<a href="{{route('product.create')}}">Create product</a>
